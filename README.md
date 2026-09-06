@@ -1,58 +1,110 @@
-# Weekly Tracker
+<div align="center">
 
-A responsive productivity tracker built from scratch with HTML, CSS and JavaScript.
+# 🔴 WEEKLY TRACKER
 
-Weekly Tracker helps you organize your days, track completed tasks and see your progress over time.
+### Plan. Track. Improve.
 
-## 🚀 Live Demo
+A responsive productivity tracker built from scratch with  
+**HTML, CSS and JavaScript.**
 
-https://lugin08.github.io/WEEK-PLANNER/
+[🚀 Live Demo](https://lugin08.github.io/WEEK-PLANNER/)
+
+</div>
+
+---
 
 ## ✨ Features
 
-- 📋 Daily task management
-- 📅 Weekly planner with 7 separate days
-- 🎯 Weekly goals
-- 📊 Progress statistics
-- 📈 Weekly progress graph
-- 🔥 Current and best streaks
-- 🏆 Achievement system
-- 📆 Activity calendar
-- 📝 Daily notes
-- 🌙 Dark / Light mode
-- 💾 Data saved with LocalStorage
-- 📱 Responsive design for mobile and desktop
+| 📋 Productivity | 📊 Progress | 🎨 Experience |
+|---|---|---|
+| Daily tasks | Progress statistics | Dark / Light mode |
+| Weekly planner | Progress graph | Responsive design |
+| Weekly goals | Streak system | Clean UI |
+| Daily notes | Activity calendar | Mobile friendly |
+| 7 separate days | Achievement system | LocalStorage |
+
+---
+
+## 📸 Screenshots
+
+### TODAY
+
+Your daily tasks, progress and personal notes.
+
+![Today](IMG_1520.png)
+
+---
+
+### WEEK
+
+Plan every day of your week and create weekly goals.
+
+![Week](IMG_1521.png)
+
+---
+
+### PROGRESS
+
+Track your long-term progress with statistics and graphs.
+
+![Progress](IMG_1524.png)
+
+---
+
+### CALENDAR
+
+See your activity and completed tasks across the month.
+
+![Calendar](IMG_1526.png)
+
+---
 
 ## 🛠️ Built With
 
-- HTML5
-- CSS3
-- JavaScript
-- LocalStorage
-- Canvas API
-- GitHub Pages
+- **HTML5** — structure
+- **CSS3** — design and responsive layout
+- **JavaScript** — application logic
+- **LocalStorage** — saving user data
+- **Canvas API** — progress graph
+- **GitHub Pages** — deployment
+
+---
 
 ## 📱 Responsive Design
 
-The website is designed to work on:
+Weekly Tracker is designed to work across:
 
-- Desktop
-- Laptop
-- Tablet
-- Mobile
+- 💻 Desktop
+- 💻 Laptop
+- 📱 Mobile
+- 📲 Tablet
+
+---
 
 ## 🎯 Project Goal
 
-I built Weekly Tracker to practice front-end development and create a useful productivity tool from scratch.
+I built Weekly Tracker from scratch to practice front-end development and create a useful productivity tool.
 
-The project focuses on JavaScript logic, local data storage, responsive design and creating a clean user experience.
+The project focuses on:
+
+- JavaScript logic
+- Local data storage
+- Responsive web design
+- User experience
+- Data visualization
+- Building a complete project from scratch
+
+---
 
 ## 📂 Project Structure
 
 ```text
 WEEK-PLANNER/
+│
 ├── index.html
+├── product.html
 ├── week.html
 ├── progress.html
 ├── style.css
-└── script.js
+├── script.js
+└── README.md
