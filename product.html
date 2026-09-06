@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Today | Discipline</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <header>
+
+        <div class="logo">
+            DISCIPLINE
+        </div>
+
+        <nav>
+            <a href="product.html" class="active">TODAY</a>
+            <a href="week.html">WEEK</a>
+            <a href="progress.html">PROGRESS</a>
+        </nav>
+
+        <button id="theme-toggle">
+            ☀️
+        </button>
+
+    </header>
+
+
+    <main>
+
+        <!-- Welcome -->
+
+        <section class="welcome">
+
+            <p class="date" id="current-date">
+                MONDAY, AUGUST 24
+            </p>
+
+            <h1>
+                GOOD MORNING,
+                <span id="user-name">YAROSLAV</span>
+            </h1>
+
+            <p class="subtitle">
+                LET'S GET THINGS DONE.
+            </p>
+
+        </section>
+
+
+        <!-- Today's progress -->
+
+        <section class="today-progress">
+
+            <div class="progress-header">
+
+                <h2>TODAY'S PROGRESS</h2>
+
+                <span id="progress-percent">
+                    0%
+                </span>
+
+            </div>
+
+            <div class="progress-bar">
+
+                <div id="progress-fill"></div>
+
+            </div>
+
+            <p id="task-counter">
+                0 / 0 completed
+            </p>
+
+        </section>
+
+
+        <!-- Today's tasks -->
+
+        <section class="tasks-section">
+
+            <div class="section-header">
+
+                <h2>TODAY'S TASKS</h2>
+
+                <button id="add-task">
+                    + ADD TASK
+                </button>
+
+            </div>
+
+            <div id="task-list">
+                <!-- Tasks will appear here -->
+            </div>
+
+        </section>
+
+    </main>
+<section class="notes-section">
+
+    <div class="section-header">
+        <h2>DAILY NOTE</h2>
+    </div>
+
+    <div class="notes-card">
+
+        <textarea
+            id="daily-note"
+            placeholder="Write something about your day..."
+        ></textarea>
+
+        <div class="notes-footer">
+            <span id="note-status">NOT SAVED</span>
+
+            <button id="save-note">
+                SAVE NOTE
+            </button>
+        </div>
+
+    </div>
+
+</section>
+
+    <footer>
+
+        <p>
+            BUILT BY DISCIPLINE
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

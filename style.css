@@ -1,0 +1,1874 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap');
+
+
+/*RESET*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #080808;
+    color: white;
+    font-family: "Inter", sans-serif;
+    min-height: 100vh;
+}
+
+
+/*HEADER*/
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 20px 7%;
+
+    background: rgba(8, 8, 8, 0.95);
+    backdrop-filter: blur(10px);
+
+    border-bottom: 1px solid #222;
+}
+
+.logo {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 30px;
+    letter-spacing: 3px;
+    color: #e10600;
+}
+
+
+/*NAVIGATION*/
+
+nav {
+    display: flex;
+    gap: 35px;
+}
+
+nav a {
+    color: #888;
+    text-decoration: none;
+
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 20px;
+    letter-spacing: 2px;
+
+    transition: 0.3s;
+}
+
+nav a:hover,
+nav a.active {
+    color: #e10600;
+}
+
+
+/*MAIN*/
+
+#theme-toggle {
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid #333;
+    border-radius: 50%;
+
+    background: #141414;
+    color: white;
+
+    font-size: 20px;
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+#theme-toggle:hover {
+    transform: rotate(15deg) scale(1.05);
+}
+
+
+/*MAIN*/
+main {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+/*WELCOME*/
+.welcome {
+    padding: 100px 0 60px;
+}
+
+.date {
+    color: #e10600;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 20px;
+}
+
+.welcome h1 {
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: clamp(60px, 9vw, 120px);
+
+    line-height: 0.9;
+
+    letter-spacing: 3px;
+}
+
+.welcome h1 span {
+    color: #e10600;
+}
+
+.subtitle {
+    margin-top: 25px;
+
+    color: #888;
+
+    font-size: 20px;
+
+    letter-spacing: 2px;
+}
+
+
+/*PROGRESS PART*/
+
+.today-progress {
+    background: #141414;
+
+    border-radius: 16px;
+
+    padding: 30px;
+
+    border-left: 4px solid #e10600;
+
+    margin-bottom: 60px;
+}
+
+.progress-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+.progress-header h2 {
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: 32px;
+
+    letter-spacing: 2px;
+}
+
+#progress-percent {
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: 40px;
+
+    color: #e10600;
+}
+
+
+/*PROGRESS BAR*/
+.progress-bar {
+    width: 100%;
+
+    height: 10px;
+
+    background: #292929;
+
+    border-radius: 20px;
+
+    margin: 20px 0;
+
+    overflow: hidden;
+}
+
+#progress-fill {
+    width: 0%;
+
+    height: 100%;
+
+    background: #e10600;
+
+    transition: width 0.4s ease;
+}
+
+#task-counter {
+    color: #777;
+
+    font-size: 14px;
+}
+
+
+/*TASK SECTION*/
+.tasks-section {
+    padding-bottom: 100px;
+}
+
+.section-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+.section-header h2 {
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: 45px;
+
+    letter-spacing: 2px;
+}
+
+
+/*ADD TASK BUTTON*/
+#add-task {
+    padding: 12px 20px;
+
+    background: #e10600;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 8px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+#add-task:hover {
+    background: white;
+
+    color: black;
+
+    transform: translateY(-3px);
+}
+
+
+/*TASK LIST*/
+
+#task-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+
+/*TASK CARD*/
+
+.task-card {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    background: #141414;
+
+    border: 1px solid #222;
+
+    border-radius: 12px;
+
+    padding: 20px 22px;
+
+    transition: 0.3s;
+}
+
+.task-card:hover {
+    border-color: #e10600;
+
+    transform: translateY(-2px);
+}
+
+.task-left {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+
+/*COMPLETE BUTTON*/
+
+.complete-button {
+    width: 30px;
+    height: 30px;
+
+    flex-shrink: 0;
+
+    border: 2px solid #555;
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.complete-button:hover {
+    border-color: #e10600;
+}
+
+.task-card.completed .complete-button {
+    background: #e10600;
+
+    border-color: #e10600;
+}
+
+
+/*TASK TEXT*/
+
+.task-card h3 {
+    font-size: 17px;
+
+    font-weight: 600;
+
+    margin-bottom: 5px;
+}
+
+.task-card p {
+    color: #777;
+
+    font-size: 13px;
+}
+
+.task-card.completed h3 {
+    text-decoration: line-through;
+
+    color: #666;
+}
+
+
+/*DELETE BUTTON*/
+
+.delete-button {
+    border: none;
+
+    background: transparent;
+
+    color: #666;
+
+    font-size: 26px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.delete-button:hover {
+    color: #e10600;
+}
+
+
+/*FOOTER*/
+
+footer {
+    text-align: center;
+
+    padding: 30px;
+
+    color: #555;
+
+    letter-spacing: 2px;
+
+    font-size: 12px;
+}
+
+
+/*LIGHT MODE*/
+
+body.light-mode {
+    background: #f4f4f4;
+
+    color: #111;
+}
+
+body.light-mode header {
+    background: rgba(244, 244, 244, 0.95);
+
+    border-bottom-color: #ddd;
+}
+
+body.light-mode nav a {
+    color: #777;
+}
+
+body.light-mode nav a:hover,
+body.light-mode nav a.active {
+    color: #e10600;
+}
+
+body.light-mode #theme-toggle {
+    background: white;
+
+    border-color: #ddd;
+
+    color: #111;
+}
+
+body.light-mode .today-progress,
+body.light-mode .task-card {
+    background: white;
+
+    border-color: #ddd;
+}
+
+body.light-mode .progress-bar {
+    background: #ddd;
+}
+
+body.light-mode .task-card:hover {
+    border-color: #e10600;
+}
+
+body.light-mode .complete-button {
+    border-color: #aaa;
+
+    color: #111;
+}
+
+body.light-mode footer {
+    color: #999;
+}
+
+
+/*MOBILE*/
+
+@media (max-width: 700px) {
+
+    header {
+        padding: 15px;
+
+        flex-wrap: wrap;
+
+        gap: 15px;
+    }
+
+    nav {
+        order: 3;
+
+        width: 100%;
+
+        justify-content: center;
+
+        gap: 22px;
+    }
+
+    nav a {
+        font-size: 17px;
+    }
+
+    .welcome {
+        padding: 70px 0 50px;
+    }
+
+    .welcome h1 {
+        font-size: 65px;
+    }
+
+    .subtitle {
+        font-size: 16px;
+    }
+
+    .today-progress {
+        padding: 22px;
+
+        margin-bottom: 45px;
+    }
+
+    .progress-header h2 {
+        font-size: 27px;
+    }
+
+    #progress-percent {
+        font-size: 34px;
+    }
+
+    .section-header {
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+    .section-header h2 {
+        font-size: 38px;
+    }
+
+    #add-task {
+        padding: 10px 14px;
+
+        font-size: 12px;
+    }
+
+    .task-card {
+        padding: 17px;
+    }
+
+    .task-left {
+        gap: 12px;
+    }
+}
+/* Week page */
+
+.week-intro {
+    padding: 100px 0 60px;
+}
+
+.week-intro h1 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(60px, 9vw, 120px);
+    line-height: 0.9;
+    letter-spacing: 3px;
+}
+
+.week-intro h1 span {
+    color: #e10600;
+}
+
+.week-section {
+    padding-bottom: 100px;
+}
+
+.week-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.week-header h2 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 45px;
+    letter-spacing: 2px;
+}
+
+#week-progress {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 40px;
+    color: #e10600;
+}
+
+.days {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.day-card {
+    background: #141414;
+    border: 1px solid #222;
+    border-radius: 14px;
+    padding: 22px;
+    transition: 0.3s;
+}
+
+.day-card:hover {
+    border-color: #e10600;
+    transform: translateY(-3px);
+}
+
+.day-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.day-header p {
+    color: #e10600;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+}
+
+.day-header h3 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 30px;
+    letter-spacing: 1px;
+}
+
+.add-day-task {
+    width: 38px;
+    height: 38px;
+
+    border: 1px solid #333;
+    border-radius: 50%;
+
+    background: #1d1d1d;
+    color: white;
+
+    font-size: 24px;
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.add-day-task:hover {
+    background: #e10600;
+    border-color: #e10600;
+}
+
+.day-tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.day-task {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 13px 15px;
+
+    background: #0d0d0d;
+    border-radius: 8px;
+}
+
+.day-task-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.day-task-name {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.day-task-time {
+    color: #777;
+    font-size: 12px;
+}
+
+.day-task-complete {
+    width: 25px;
+    height: 25px;
+
+    border: 2px solid #555;
+    border-radius: 50%;
+
+    background: transparent;
+    color: white;
+
+    cursor: pointer;
+}
+
+.day-task.completed .day-task-complete {
+    background: #e10600;
+    border-color: #e10600;
+}
+
+.day-task.completed .day-task-name {
+    color: #666;
+    text-decoration: line-through;
+}
+
+
+/* Light mode */
+
+body.light-mode .day-card {
+    background: white;
+    border-color: #ddd;
+}
+
+body.light-mode .day-task {
+    background: #f3f3f3;
+}
+
+body.light-mode .add-day-task {
+    background: #f5f5f5;
+    color: #111;
+    border-color: #ddd;
+}
+
+body.light-mode .day-task-complete {
+    border-color: #aaa;
+    color: #111;
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .week-intro {
+        padding: 70px 0 50px;
+    }
+
+    .week-intro h1 {
+        font-size: 65px;
+    }
+
+    .week-header h2 {
+        font-size: 38px;
+    }
+
+    #week-progress {
+        font-size: 34px;
+    }
+
+    .days {
+        grid-template-columns: 1fr;
+    }
+
+    .day-card {
+        padding: 18px;
+    }
+}/* Progress page */
+
+.progress-intro {
+    padding: 100px 0 60px;
+}
+
+.progress-intro h1 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(60px, 9vw, 120px);
+    line-height: 0.9;
+    letter-spacing: 3px;
+}
+
+.progress-intro h1 span {
+    color: #e10600;
+}
+
+
+/* Statistics */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 60px;
+}
+
+.stat-card {
+    background: #141414;
+    border: 1px solid #222;
+    border-radius: 14px;
+    padding: 25px;
+    transition: 0.3s;
+}
+
+.stat-card:hover {
+    border-color: #e10600;
+    transform: translateY(-3px);
+}
+
+.stat-card p {
+    color: #777;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.stat-card h2 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 48px;
+    color: #e10600;
+}
+
+
+/* Chart */
+
+.chart-section {
+    margin-bottom: 40px;
+}
+
+.chart-section .section-header {
+    margin-bottom: 25px;
+}
+
+.chart-section h2 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 45px;
+    letter-spacing: 2px;
+}
+
+.chart {
+    position: relative;
+
+    min-height: 350px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #141414;
+    border: 1px solid #222;
+    border-radius: 14px;
+
+    padding: 25px;
+}
+
+#progress-chart {
+    width: 100%;
+    max-width: 1000px;
+}
+
+.chart-empty {
+    color: #555;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+
+/* Best week */
+
+.best-week {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: #141414;
+
+    border-left: 4px solid #e10600;
+
+    border-radius: 14px;
+
+    padding: 25px 30px;
+
+    margin-bottom: 100px;
+}
+
+.best-week p {
+    color: #777;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.best-week h2 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 38px;
+}
+
+
+/* Light mode */
+
+body.light-mode .stat-card,
+body.light-mode .chart,
+body.light-mode .best-week {
+    background: white;
+    border-color: #ddd;
+}
+
+
+/* Mobile */
+
+@media (max-width: 800px) {
+
+    .progress-intro {
+        padding: 70px 0 50px;
+    }
+
+    .progress-intro h1 {
+        font-size: 65px;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat-card h2 {
+        font-size: 40px;
+    }
+
+    .chart {
+        min-height: 280px;
+        padding: 15px;
+    }
+
+    .best-week {
+        padding: 22px;
+    }
+
+    .best-week h2 {
+        font-size: 32px;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .best-week {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 25px;
+    }
+}.day-task-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.day-task-delete {
+    border: none;
+    background: transparent;
+    color: #666;
+    font-size: 22px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.day-task-delete:hover {
+    color: #e10600;
+}/* Extra light mode fixes */
+
+body.light-mode .history-card {
+    background: white;
+    border-color: #ddd;
+    color: #111;
+}
+
+body.light-mode .history-date {
+    color: #111;
+}
+
+body.light-mode .history-info {
+    color: #777;
+}
+
+body.light-mode .history-bar {
+    background: #ddd;
+}
+
+body.light-mode .chart-empty {
+    color: #777;
+}
+
+body.light-mode .chart-section h2,
+body.light-mode .section-header h2 {
+    color: #111;
+}
+
+body.light-mode .week-intro h1,
+body.light-mode .progress-intro h1 {
+    color: #111;
+}
+
+body.light-mode .subtitle {
+    color: #666;
+}.streak-section {
+    margin-bottom: 60px;
+}
+
+.streak-card {
+    background: #141414;
+    border-left: 4px solid #e10600;
+    border-radius: 14px;
+    padding: 25px 30px;
+}
+
+.streak-card p {
+    color: #777;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.streak-card h2 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 42px;
+    color: #e10600;
+}
+
+body.light-mode .streak-card {
+    background: white;
+    border-color: #ddd;
+}
+
+@media (max-width: 700px) {
+
+    .streak-card {
+        padding: 22px;
+    }
+
+    .streak-card h2 {
+        font-size: 36px;
+    }
+}/* Activity calendar */
+
+.activity-section {
+    margin-bottom: 60px;
+}
+
+.activity-card {
+    background: #141414;
+    border: 1px solid #222;
+    border-radius: 14px;
+    padding: 25px;
+    overflow-x: auto;
+}
+
+.activity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    gap: 20px;
+}
+
+.activity-header h3 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+
+.activity-header > span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    color: #777;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.activity-level {
+    width: 13px;
+    height: 13px;
+    border-radius: 3px;
+    display: inline-block;
+    background: #292929;
+}
+
+.level-1 {
+    background: #5a1515;
+}
+
+.level-2 {
+    background: #8b1515;
+}
+
+.level-3 {
+    background: #b81818;
+}
+
+.level-4 {
+    background: #e10600;
+}
+
+#activity-calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 7px;
+
+    min-width: 500px;
+}
+
+.activity-day {
+    aspect-ratio: 1;
+    min-width: 18px;
+
+    background: #292929;
+    border-radius: 3px;
+
+    cursor: default;
+
+    transition: 0.2s;
+}
+
+.activity-day:hover {
+    transform: scale(1.15);
+}
+
+.activity-day.level-1 {
+    background: #5a1515;
+}
+
+.activity-day.level-2 {
+    background: #8b1515;
+}
+
+.activity-day.level-3 {
+    background: #b81818;
+}
+
+.activity-day.level-4 {
+    background: #e10600;
+}
+
+body.light-mode .activity-card {
+    background: white;
+    border-color: #ddd;
+}
+
+body.light-mode .activity-day {
+    background: #ddd;
+}
+
+@media (max-width: 600px) {
+
+    .activity-card {
+        padding: 18px;
+    }
+
+    .activity-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}// Activity calendar
+
+const activityCalendar =
+    document.getElementById("activity-calendar");
+
+
+if (activityCalendar) {
+
+    const activity =
+        JSON.parse(
+            localStorage.getItem(
+                "dailyActivity"
+            )
+        ) || {};
+
+
+    const today =
+        new Date();
+
+
+    const year =
+        today.getFullYear();
+
+    const month =
+        today.getMonth();
+
+
+    const monthElement =
+        document.getElementById(
+            "activity-month"
+        );
+
+
+    if (monthElement) {
+
+        monthElement.textContent =
+            today.toLocaleDateString(
+                "en-US",
+                {
+                    month: "long",
+                    year: "numeric"
+                }
+            ).toUpperCase();
+    }
+
+
+    const daysInMonth =
+        new Date(
+            year,
+            month + 1,
+            0
+        ).getDate();
+
+
+    activityCalendar.innerHTML =
+        "";
+
+
+    for (
+        let day = 1;
+        day <= daysInMonth;
+        day++
+    ) {
+
+        const date =
+            new Date(
+                year,
+                month,
+                day
+            );
+
+
+        const dateKey =
+            getDateKey(date);
+
+
+        const count =
+            activity[dateKey] || 0;
+
+
+        const cell =
+            document.createElement(
+                "div"
+            );
+
+
+        cell.className =
+            "activity-day";
+
+
+        if (count >= 1) {
+            cell.classList.add("level-1");
+        }
+
+        if (count >= 2) {
+            cell.classList.add("level-2");
+        }
+
+        if (count >= 3) {
+            cell.classList.add("level-3");
+        }
+
+        if (count >= 5) {
+            cell.classList.add("level-4");
+        }
+
+
+        cell.title =
+            `${formatDate(date)} — ${count} completed`;
+
+
+        activityCalendar.appendChild(
+            cell
+        );
+    }
+}// Activity calendar
+
+const calendar = document.getElementById("activity-calendar");
+
+if (calendar) {
+
+    const activity = JSON.parse(
+        localStorage.getItem("dailyActivity")
+    ) || {};
+
+    const today = new Date();
+
+    const year = today.getFullYear();
+    const month = today.getMonth();
+
+    const monthTitle =
+        document.getElementById("activity-month");
+
+    if (monthTitle) {
+        monthTitle.textContent =
+            today.toLocaleDateString("en-US", {
+                month: "long",
+                year: "numeric"
+            }).toUpperCase();
+    }
+
+    calendar.innerHTML = "";
+
+    const daysInMonth =
+        new Date(year, month + 1, 0).getDate();
+
+    for (let day = 1; day <= daysInMonth; day++) {
+
+        const date = new Date(
+            year,
+            month,
+            day
+        );
+
+        const dateKey = getDateKey(date);
+
+        const count = activity[dateKey] || 0;
+
+        const cell = document.createElement("div");
+
+        cell.classList.add("activity-day");
+
+        if (count >= 1) {
+            cell.classList.add("level-1");
+        }
+
+        if (count >= 2) {
+            cell.classList.add("level-2");
+        }
+
+        if (count >= 3) {
+            cell.classList.add("level-3");
+        }
+
+        if (count >= 5) {
+            cell.classList.add("level-4");
+        }
+
+        cell.title =
+            `${dateKey}: ${count} completed`;
+
+        calendar.appendChild(cell);
+    }
+}/* Weekly goals */
+
+.goals-section {
+    background: #141414;
+    border-left: 4px solid #e10600;
+    border-radius: 14px;
+    padding: 25px 30px;
+    margin-bottom: 40px;
+}
+
+.goals-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.goals-header p {
+    color: #e10600;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+.goals-header h2 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 38px;
+    letter-spacing: 2px;
+}
+
+#goals-progress {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 40px;
+    color: #e10600;
+}
+
+.goals-progress-bar {
+    height: 8px;
+    background: #292929;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+#goals-progress-fill {
+    width: 0%;
+    height: 100%;
+    background: #e10600;
+    transition: width 0.3s ease;
+}
+
+#goals-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.goal-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 13px 15px;
+
+    background: #0d0d0d;
+    border-radius: 8px;
+}
+
+.goal-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.goal-check {
+    width: 25px;
+    height: 25px;
+
+    border: 2px solid #555;
+    border-radius: 50%;
+
+    background: transparent;
+    color: white;
+
+    cursor: pointer;
+}
+
+.goal-card.completed .goal-check {
+    background: #e10600;
+    border-color: #e10600;
+}
+
+.goal-name {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.goal-card.completed .goal-name {
+    color: #666;
+    text-decoration: line-through;
+}
+
+.goal-delete {
+    border: none;
+    background: transparent;
+    color: #666;
+
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.goal-delete:hover {
+    color: #e10600;
+}
+
+#add-goal {
+    padding: 10px 16px;
+
+    background: #e10600;
+    color: white;
+
+    border: none;
+    border-radius: 7px;
+
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#add-goal:hover {
+    background: white;
+    color: black;
+}
+
+body.light-mode .goals-section {
+    background: white;
+}
+
+body.light-mode .goal-card {
+    background: #f3f3f3;
+}
+
+body.light-mode .goal-name {
+    color: #111;
+}
+
+body.light-mode .goal-check {
+    border-color: #aaa;
+    color: #111;
+}
+
+@media (max-width: 600px) {
+
+    .goals-section {
+        padding: 22px;
+    }
+
+    .goals-header h2 {
+        font-size: 32px;
+    }
+
+    #goals-progress {
+        font-size: 34px;
+    }
+}/* Achievements */
+
+.achievements-section {
+    margin-bottom: 100px;
+}
+
+.achievements-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.achievement-card {
+    background: #141414;
+    border: 1px solid #222;
+    border-radius: 14px;
+    padding: 25px;
+
+    transition: 0.3s;
+}
+
+.achievement-card.unlocked {
+    border-color: #e10600;
+}
+
+.achievement-card.unlocked:hover {
+    transform: translateY(-4px);
+}
+
+.achievement-icon {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.achievement-card h3 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 28px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.achievement-card p {
+    color: #777;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.achievement-status {
+    display: inline-block;
+    margin-top: 18px;
+
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.achievement-card.unlocked .achievement-status {
+    color: #e10600;
+}
+
+.achievement-card.locked {
+    opacity: 0.45;
+}
+
+.achievement-card.locked .achievement-icon {
+    filter: grayscale(1);
+}
+
+body.light-mode .achievement-card {
+    background: white;
+    border-color: #ddd;
+}
+
+body.light-mode .achievement-card.unlocked {
+    border-color: #e10600;
+}
+
+@media (max-width: 800px) {
+
+    .achievements-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 550px) {
+
+    .achievements-list {
+        grid-template-columns: 1fr;
+    }
+}/* Daily notes */
+
+.notes-section {
+    margin-bottom: 80px;
+}
+
+.notes-card {
+    background: #141414;
+    border: 1px solid #222;
+    border-radius: 14px;
+    padding: 25px;
+}
+
+#daily-note {
+    width: 100%;
+    min-height: 160px;
+
+    background: transparent;
+    border: none;
+    outline: none;
+    resize: vertical;
+
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+#daily-note::placeholder {
+    color: #666;
+}
+
+.notes-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 20px;
+    padding-top: 18px;
+
+    border-top: 1px solid #222;
+}
+
+#note-status {
+    color: #666;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+#save-note {
+    background: #e10600;
+    border: none;
+    border-radius: 6px;
+
+    padding: 11px 18px;
+
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#save-note:hover {
+    transform: translateY(-2px);
+}
+
+body.light-mode .notes-card {
+    background: white;
+    border-color: #ddd;
+}
+
+body.light-mode #daily-note {
+    color: #111;
+}
+
+body.light-mode .notes-footer {
+    border-color: #ddd;
+}
+
+@media (max-width: 600px) {
+
+    .notes-footer {
+        align-items: flex-start;
+        gap: 15px;
+        flex-direction: column;
+    }
+
+    #save-note {
+        width: 100%;
+    }
+}/* Calendar */
+
+.calendar-section {
+    margin-bottom: 80px;
+}
+
+.calendar-card {
+    background: #141414;
+    border: 1px solid #222;
+    border-radius: 14px;
+    padding: 25px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.calendar-header h3 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+
+.calendar-header button {
+    width: 40px;
+    height: 40px;
+
+    background: #222;
+    border: none;
+    border-radius: 6px;
+
+    color: white;
+    font-size: 20px;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.calendar-header button:hover {
+    background: #e10600;
+}
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+
+    margin-bottom: 8px;
+}
+
+.calendar-weekdays span {
+    text-align: center;
+
+    color: #666;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+#calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+}
+
+.calendar-day {
+    min-height: 55px;
+
+    background: #1d1d1d;
+    border-radius: 7px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #aaa;
+    font-size: 13px;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.calendar-day:hover {
+    transform: translateY(-2px);
+    border: 1px solid #e10600;
+}
+
+.calendar-day.empty {
+    visibility: hidden;
+}
+
+.calendar-day.today {
+    border: 1px solid #e10600;
+    color: white;
+}
+
+.calendar-day.active {
+    background: #8b1515;
+    color: white;
+}
+
+.calendar-day.active.high-activity {
+    background: #e10600;
+    color: white;
+}
+
+.calendar-info {
+    margin-top: 25px;
+    padding-top: 20px;
+
+    border-top: 1px solid #222;
+
+    color: #777;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+body.light-mode .calendar-card {
+    background: white;
+    border-color: #ddd;
+}
+
+body.light-mode .calendar-header button {
+    background: #eee;
+    color: #111;
+}
+
+body.light-mode .calendar-day {
+    background: #eee;
+    color: #555;
+}
+
+body.light-mode .calendar-day.today {
+    color: #111;
+}
+
+body.light-mode .calendar-info {
+    border-color: #ddd;
+}
+
+@media (max-width: 600px) {
+
+    .calendar-card {
+        padding: 15px;
+    }
+
+    #calendar-days,
+    .calendar-weekdays {
+        gap: 4px;
+    }
+
+    .calendar-day {
+        min-height: 42px;
+        font-size: 11px;
+    }
+
+    .calendar-weekdays span {
+        font-size: 8px;
+    }
+}/* Achievement progress */
+
+.achievement-progress {
+    margin-top: 18px;
+}
+
+.achievement-progress-text {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 7px;
+
+    color: #777;
+    font-size: 10px;
+}
+
+.achievement-progress-bar {
+    width: 100%;
+    height: 5px;
+
+    background: #292929;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.achievement-progress-fill {
+    height: 100%;
+    background: #e10600;
+    border-radius: 10px;
+}
+
+.achievement-card.unlocked .achievement-progress {
+    display: none;
+}
+
+body.light-mode .achievement-progress-bar {
+    background: #ddd;
+}

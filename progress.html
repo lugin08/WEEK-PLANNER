@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Progress | Discipline</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <header>
+
+        <div class="logo">
+            DISCIPLINE
+        </div>
+
+        <nav>
+            <a href="product.html">TODAY</a>
+            <a href="week.html">WEEK</a>
+            <a href="progress.html" class="active">PROGRESS</a>
+        </nav>
+
+        <button id="theme-toggle">☀️</button>
+
+    </header>
+
+
+    <main>
+
+        <!-- Page introduction -->
+
+        <section class="progress-intro">
+
+            <p class="date">
+                YOUR JOURNEY
+            </p>
+
+            <h1>
+                TRACK YOUR
+                <span>PROGRESS.</span>
+            </h1>
+
+            <p class="subtitle">
+                SMALL STEPS. BIG RESULTS.
+            </p>
+
+        </section>
+
+
+        <!-- Statistics -->
+
+        <section class="stats">
+
+            <div class="stat-card">
+                <p>WEEKS</p>
+                <h2 id="total-weeks">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>TASKS</p>
+                <h2 id="total-tasks">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>COMPLETED</p>
+                <h2 id="completed-tasks">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>AVERAGE</p>
+                <h2 id="average-progress">0%</h2>
+            </div><div class="stat-card">
+    <p>CURRENT STREAK</p>
+    <h2 id="current-streak">0</h2>
+</div>
+
+<div class="stat-card">
+    <p>BEST STREAK</p>
+    <h2 id="best-streak">0</h2>
+</div>
+
+        </section>
+
+
+        <!-- Progress chart -->
+
+        <section class="chart-section">
+
+            <div class="section-header">
+                <h2>WEEKLY PROGRESS</h2>
+            </div>
+
+            <div class="chart">
+
+                <div id="chart-empty" class="chart-empty">
+                    YOUR PROGRESS WILL APPEAR HERE
+                </div>
+
+                <canvas id="progress-chart"></canvas>
+
+            </div>
+
+        </section><section class="activity-section">
+
+    <div class="section-header">
+        <h2>ACTIVITY</h2>
+    </div>
+
+    <div class="activity-card">
+
+        <div class="activity-header">
+            <h3 id="activity-month">SEPTEMBER 2026</h3>
+
+            <span>
+                LESS
+                <span class="activity-level level-0"></span>
+                <span class="activity-level level-1"></span>
+                <span class="activity-level level-2"></span>
+                <span class="activity-level level-3"></span>
+                <span class="activity-level level-4"></span>
+                MORE
+            </span>
+        </div>
+
+        <div id="activity-calendar"></div>
+
+    </div>
+
+</section>
+
+<section class="calendar-section">
+
+    <div class="section-header">
+        <h2>CALENDAR</h2>
+    </div>
+
+    <div class="calendar-card">
+
+        <div class="calendar-header">
+
+            <button id="prev-month">←</button>
+
+            <h3 id="calendar-month">
+                SEPTEMBER 2026
+            </h3>
+
+            <button id="next-month">→</button>
+
+        </div>
+
+        <div class="calendar-weekdays">
+            <span>MON</span>
+            <span>TUE</span>
+            <span>WED</span>
+            <span>THU</span>
+            <span>FRI</span>
+            <span>SAT</span>
+            <span>SUN</span>
+        </div>
+
+        <div id="calendar-days"></div>
+
+        <div id="calendar-info" class="calendar-info">
+            SELECT A DAY
+        </div>
+
+    </div>
+
+</section>
+        <!-- Best week -->
+
+        <section class="best-week">
+
+            <div>
+                <p>BEST WEEK</p>
+                <h2 id="best-week">—</h2>
+            </div>
+
+            <div>
+                <p>BEST SCORE</p>
+                <h2 id="best-score">0%</h2>
+            </div>
+
+        </section>
+
+    </main>
+
+<section class="achievements-section">
+
+    <div class="section-header">
+        <h2>ACHIEVEMENTS</h2>
+    </div>
+
+    <div id="achievements-list" class="achievements-list"></div>
+
+</section>
+    <footer>
+        <p>BUILT BY DISCIPLINE</p>
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
