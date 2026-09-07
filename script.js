@@ -1,42 +1,60 @@
 // Theme
 
-const themeButton = document.getElementById("theme-toggle");
+const themeButton =
+    document.getElementById("theme-toggle");
 
 function applyTheme() {
-    const lightMode = localStorage.getItem("theme") === "light";
 
-    document.body.classList.toggle("light-mode", lightMode);
+    const lightMode =
+        localStorage.getItem("theme") === "light";
+
+    document.body.classList.toggle(
+        "light-mode",
+        lightMode
+    );
 
     if (themeButton) {
-        themeButton.textContent = lightMode ? "🌙" : "☀️";
+        themeButton.textContent =
+            lightMode ? "🌙" : "☀️";
     }
 }
 
 applyTheme();
 
 if (themeButton) {
-    themeButton.addEventListener("click", () => {
-        const lightMode =
-            document.body.classList.toggle("light-mode");
 
-        localStorage.setItem(
-            "theme",
-            lightMode ? "light" : "dark"
-        );
+    themeButton.addEventListener(
+        "click",
+        () => {
 
-        themeButton.textContent =
-            lightMode ? "🌙" : "☀️";
+            const lightMode =
+                document.body.classList.toggle(
+                    "light-mode"
+                );
 
-        if (typeof window.drawProgressChart === "function") {
-            window.drawProgressChart();
+            localStorage.setItem(
+                "theme",
+                lightMode ? "light" : "dark"
+            );
+
+            themeButton.textContent =
+                lightMode ? "🌙" : "☀️";
+
+            if (
+                typeof window.drawProgressChart ===
+                "function"
+            ) {
+                window.drawProgressChart();
+            }
         }
-    });
+    );
 }
 
 
 // Common functions
 
 function createEmptyWeek() {
+
     return {
         monday: [],
         tuesday: [],
@@ -48,45 +66,71 @@ function createEmptyWeek() {
     };
 }
 
+
 function getWeekStart(date) {
-    const start = new Date(date);
-    const day = start.getDay();
+
+    const start =
+        new Date(date);
+
+    const day =
+        start.getDay();
 
     const difference =
-        day === 0 ? -6 : 1 - day;
+        day === 0
+            ? -6
+            : 1 - day;
 
-    start.setDate(start.getDate() + difference);
-    start.setHours(0, 0, 0, 0);
+    start.setDate(
+        start.getDate() + difference
+    );
+
+    start.setHours(
+        0,
+        0,
+        0,
+        0
+    );
 
     return start;
 }
 
+
 function getWeekId(date) {
-    const monday = getWeekStart(date);
 
-    const year = monday.getFullYear();
+    const monday =
+        getWeekStart(date);
 
-    const month = String(
-        monday.getMonth() + 1
-    ).padStart(2, "0");
+    const year =
+        monday.getFullYear();
 
-    const day = String(
-        monday.getDate()
-    ).padStart(2, "0");
+    const month =
+        String(
+            monday.getMonth() + 1
+        ).padStart(2, "0");
+
+    const day =
+        String(
+            monday.getDate()
+        ).padStart(2, "0");
 
     return `${year}-${month}-${day}`;
 }
 
+
 function getWeekDates(weekId) {
-    const parts = weekId.split("-");
 
-    const monday = new Date(
-        Number(parts[0]),
-        Number(parts[1]) - 1,
-        Number(parts[2])
-    );
+    const parts =
+        weekId.split("-");
 
-    const sunday = new Date(monday);
+    const monday =
+        new Date(
+            Number(parts[0]),
+            Number(parts[1]) - 1,
+            Number(parts[2])
+        );
+
+    const sunday =
+        new Date(monday);
 
     sunday.setDate(
         monday.getDate() + 6
@@ -98,29 +142,42 @@ function getWeekDates(weekId) {
     };
 }
 
+
 function formatDate(date) {
-    return date.toLocaleDateString("en-US", {
-        month: "long",
-        day: "numeric"
-    }).toUpperCase();
+
+    return date.toLocaleDateString(
+        "en-US",
+        {
+            month: "long",
+            day: "numeric"
+        }
+    ).toUpperCase();
 }
 
+
 function getDateKey(date) {
-    const year = date.getFullYear();
 
-    const month = String(
-        date.getMonth() + 1
-    ).padStart(2, "0");
+    const year =
+        date.getFullYear();
 
-    const day = String(
-        date.getDate()
-    ).padStart(2, "0");
+    const month =
+        String(
+            date.getMonth() + 1
+        ).padStart(2, "0");
+
+    const day =
+        String(
+            date.getDate()
+        ).padStart(2, "0");
 
     return `${year}-${month}-${day}`;
 }
 
+
 function dateFromKey(key) {
-    const parts = key.split("-");
+
+    const parts =
+        key.split("-");
 
     return new Date(
         Number(parts[0]),
@@ -129,17 +186,25 @@ function dateFromKey(key) {
     );
 }
 
+
 function calculateWeekProgress(tasks) {
+
     let total = 0;
     let completed = 0;
 
-    Object.values(tasks).forEach(dayTasks => {
-        total += dayTasks.length;
+    Object.values(tasks).forEach(
+        dayTasks => {
 
-        completed += dayTasks.filter(
-            task => task.completed
-        ).length;
-    });
+            total +=
+                dayTasks.length;
+
+            completed +=
+                dayTasks.filter(
+                    task =>
+                        task.completed
+                ).length;
+        }
+    );
 
     return {
         total,
@@ -148,7 +213,10 @@ function calculateWeekProgress(tasks) {
             total === 0
                 ? 0
                 : Math.round(
-                    (completed / total) * 100
+                    (
+                        completed /
+                        total
+                    ) * 100
                 )
     };
 }
@@ -157,31 +225,48 @@ function calculateWeekProgress(tasks) {
 // Daily activity
 
 function getDailyActivity() {
+
     return JSON.parse(
-        localStorage.getItem("dailyActivity")
+        localStorage.getItem(
+            "dailyActivity"
+        )
     ) || {};
 }
 
+
 function saveDailyActivity(activity) {
+
     localStorage.setItem(
         "dailyActivity",
         JSON.stringify(activity)
     );
 }
 
+
 function addDailyActivity(date) {
-    const activity = getDailyActivity();
-    const key = getDateKey(date);
+
+    const activity =
+        getDailyActivity();
+
+    const key =
+        getDateKey(date);
 
     activity[key] =
         (activity[key] || 0) + 1;
 
-    saveDailyActivity(activity);
+    saveDailyActivity(
+        activity
+    );
 }
 
+
 function removeDailyActivity(date) {
-    const activity = getDailyActivity();
-    const key = getDateKey(date);
+
+    const activity =
+        getDailyActivity();
+
+    const key =
+        getDateKey(date);
 
     if (!activity[key]) {
         return;
@@ -193,37 +278,48 @@ function removeDailyActivity(date) {
         delete activity[key];
     }
 
-    saveDailyActivity(activity);
+    saveDailyActivity(
+        activity
+    );
 }
 
 
 // Weekly history
 
 function syncWeekHistory() {
+
     const currentWeekId =
         getWeekId(new Date());
 
     const savedWeekId =
-        localStorage.getItem("currentWeekId");
+        localStorage.getItem(
+            "currentWeekId"
+        );
 
     let weekTasks =
         JSON.parse(
-            localStorage.getItem("weekTasks")
+            localStorage.getItem(
+                "weekTasks"
+            )
         );
 
     let history =
         JSON.parse(
-            localStorage.getItem("weekHistory")
+            localStorage.getItem(
+                "weekHistory"
+            )
         ) || [];
 
 
     if (!savedWeekId) {
+
         localStorage.setItem(
             "currentWeekId",
             currentWeekId
         );
 
         if (!weekTasks) {
+
             localStorage.setItem(
                 "weekTasks",
                 JSON.stringify(
@@ -236,13 +332,17 @@ function syncWeekHistory() {
     }
 
 
-    if (savedWeekId === currentWeekId) {
+    if (
+        savedWeekId ===
+        currentWeekId
+    ) {
         return;
     }
 
 
     weekTasks =
-        weekTasks || createEmptyWeek();
+        weekTasks ||
+        createEmptyWeek();
 
     const progress =
         calculateWeekProgress(
@@ -250,18 +350,24 @@ function syncWeekHistory() {
         );
 
     const dates =
-        getWeekDates(savedWeekId);
-
+        getWeekDates(
+            savedWeekId
+        );
 
     const alreadySaved =
         history.some(
-            week => week.id === savedWeekId
+            week =>
+                week.id ===
+                savedWeekId
         );
 
 
     if (!alreadySaved) {
+
         history.push({
-            id: savedWeekId,
+
+            id:
+                savedWeekId,
 
             start:
                 dates.start.toISOString(),
@@ -286,7 +392,9 @@ function syncWeekHistory() {
 
     localStorage.setItem(
         "weekHistory",
-        JSON.stringify(history)
+        JSON.stringify(
+            history
+        )
     );
 
 
@@ -304,33 +412,157 @@ function syncWeekHistory() {
     );
 }
 
+
 syncWeekHistory();
+
+
+// Shared week data
+
+let sharedWeekTasks =
+    JSON.parse(
+        localStorage.getItem(
+            "weekTasks"
+        )
+    ) || createEmptyWeek();
+
+
+// Make sure every day exists
+
+const dayKeys = [
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+    "sunday"
+];
+
+
+dayKeys.forEach(
+    day => {
+
+        if (
+            !Array.isArray(
+                sharedWeekTasks[day]
+            )
+        ) {
+
+            sharedWeekTasks[day] =
+                [];
+        }
+    }
+);
+
+
+function saveSharedWeekTasks() {
+
+    localStorage.setItem(
+        "weekTasks",
+        JSON.stringify(
+            sharedWeekTasks
+        )
+    );
+}
+
+
+// Get today's day name
+
+function getTodayName() {
+
+    const dayNames = [
+        "sunday",
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday"
+    ];
+
+    return dayNames[
+        new Date().getDay()
+    ];
+}
+
+
+// Migration from old TODAY system
+
+function migrateOldTodayTasks() {
+
+    const oldTasks =
+        JSON.parse(
+            localStorage.getItem(
+                "todayTasks"
+            )
+        );
+
+    if (
+        !Array.isArray(oldTasks) ||
+        oldTasks.length === 0
+    ) {
+        return;
+    }
+
+
+    const todayName =
+        getTodayName();
+
+
+    if (
+        sharedWeekTasks[todayName].length === 0
+    ) {
+
+        sharedWeekTasks[todayName] =
+            oldTasks;
+
+        saveSharedWeekTasks();
+    }
+
+
+    localStorage.removeItem(
+        "todayTasks"
+    );
+}
+
+
+migrateOldTodayTasks();
 
 
 // TODAY
 
 const todayTaskList =
-    document.getElementById("task-list");
+    document.getElementById(
+        "task-list"
+    );
 
 const addTodayTask =
-    document.getElementById("add-task");
+    document.getElementById(
+        "add-task"
+    );
 
 
-if (todayTaskList && addTodayTask) {
+if (
+    todayTaskList &&
+    addTodayTask
+) {
 
-    let tasks =
-        JSON.parse(
-            localStorage.getItem("todayTasks")
-        ) || [];
+    const todayName =
+        getTodayName();
 
 
     let userName =
-        localStorage.getItem("userName");
+        localStorage.getItem(
+            "userName"
+        );
 
 
     if (!userName) {
+
         userName =
-            prompt("What's your name?") ||
+            prompt(
+                "What's your name?"
+            ) ||
             "Yaroslav";
 
         userName =
@@ -345,20 +577,26 @@ if (todayTaskList && addTodayTask) {
 
 
     const nameElement =
-        document.getElementById("user-name");
+        document.getElementById(
+            "user-name"
+        );
 
 
     if (nameElement) {
+
         nameElement.textContent =
             userName.toUpperCase();
     }
 
 
     const dateElement =
-        document.getElementById("current-date");
+        document.getElementById(
+            "current-date"
+        );
 
 
     if (dateElement) {
+
         dateElement.textContent =
             new Date()
                 .toLocaleDateString(
@@ -373,29 +611,32 @@ if (todayTaskList && addTodayTask) {
     }
 
 
-    function saveTodayTasks() {
-        localStorage.setItem(
-            "todayTasks",
-            JSON.stringify(tasks)
-        );
-    }
-
-
     function updateTodayProgress() {
+
+        const tasks =
+            sharedWeekTasks[
+                todayName
+            ];
+
 
         const completed =
             tasks.filter(
-                task => task.completed
+                task =>
+                    task.completed
             ).length;
 
         const total =
             tasks.length;
 
+
         const percent =
             total === 0
                 ? 0
                 : Math.round(
-                    (completed / total) * 100
+                    (
+                        completed /
+                        total
+                    ) * 100
                 );
 
 
@@ -416,16 +657,21 @@ if (todayTaskList && addTodayTask) {
 
 
         if (percentElement) {
+
             percentElement.textContent =
                 `${percent}%`;
         }
 
+
         if (fill) {
+
             fill.style.width =
                 `${percent}%`;
         }
 
+
         if (counter) {
+
             counter.textContent =
                 `${completed} / ${total} completed`;
         }
@@ -434,7 +680,14 @@ if (todayTaskList && addTodayTask) {
 
     function showTodayTasks() {
 
-        todayTaskList.innerHTML = "";
+        todayTaskList.innerHTML =
+            "";
+
+
+        const tasks =
+            sharedWeekTasks[
+                todayName
+            ];
 
 
         tasks.forEach(
@@ -451,6 +704,7 @@ if (todayTaskList && addTodayTask) {
 
 
                 if (task.completed) {
+
                     card.classList.add(
                         "completed"
                     );
@@ -483,20 +737,26 @@ if (todayTaskList && addTodayTask) {
                     "click",
                     () => {
 
+                        const currentTask =
+                            sharedWeekTasks[
+                                todayName
+                            ][index];
+
+
                         const wasCompleted =
-                            tasks[index].completed;
+                            currentTask.completed;
 
 
-                        tasks[index].completed =
+                        currentTask.completed =
                             !wasCompleted;
 
 
                         if (
                             !wasCompleted &&
-                            tasks[index].completed
+                            currentTask.completed
                         ) {
 
-                            tasks[index].completedAt =
+                            currentTask.completedAt =
                                 getDateKey(
                                     new Date()
                                 );
@@ -509,27 +769,25 @@ if (todayTaskList && addTodayTask) {
 
                         if (
                             wasCompleted &&
-                            !tasks[index].completed
+                            !currentTask.completed
                         ) {
 
                             if (
-                                tasks[index].completedAt
+                                currentTask.completedAt
                             ) {
 
                                 removeDailyActivity(
                                     dateFromKey(
-                                        tasks[index]
-                                            .completedAt
+                                        currentTask.completedAt
                                     )
                                 );
                             }
 
-                            delete tasks[index]
-                                .completedAt;
+                            delete currentTask.completedAt;
                         }
 
 
-                        saveTodayTasks();
+                        saveSharedWeekTasks();
 
                         showTodayTasks();
 
@@ -544,27 +802,34 @@ if (todayTaskList && addTodayTask) {
                     "click",
                     () => {
 
+                        const currentTask =
+                            sharedWeekTasks[
+                                todayName
+                            ][index];
+
+
                         if (
-                            tasks[index].completed &&
-                            tasks[index].completedAt
+                            currentTask.completed &&
+                            currentTask.completedAt
                         ) {
 
                             removeDailyActivity(
                                 dateFromKey(
-                                    tasks[index]
-                                        .completedAt
+                                    currentTask.completedAt
                                 )
                             );
                         }
 
 
-                        tasks.splice(
+                        sharedWeekTasks[
+                            todayName
+                        ].splice(
                             index,
                             1
                         );
 
 
-                        saveTodayTasks();
+                        saveSharedWeekTasks();
 
                         showTodayTasks();
 
@@ -605,19 +870,23 @@ if (todayTaskList && addTodayTask) {
                 );
 
 
-            tasks.push({
+            sharedWeekTasks[
+                todayName
+            ].push({
+
                 name:
                     name.trim(),
 
                 time:
-                    time || "No time",
+                    time ||
+                    "No time",
 
                 completed:
                     false
             });
 
 
-            saveTodayTasks();
+            saveSharedWeekTasks();
 
             showTodayTasks();
 
@@ -642,12 +911,8 @@ const dayCards =
 
 if (dayCards.length > 0) {
 
-    let weekTasks =
-        JSON.parse(
-            localStorage.getItem(
-                "weekTasks"
-            )
-        ) || createEmptyWeek();
+    const weekTasks =
+        sharedWeekTasks;
 
 
     const now =
@@ -715,6 +980,7 @@ if (dayCards.length > 0) {
 
 
                 if (label) {
+
                     label.textContent =
                         "TODAY";
                 }
@@ -723,20 +989,10 @@ if (dayCards.length > 0) {
     );
 
 
-    function saveWeekTasks() {
-
-        localStorage.setItem(
-            "weekTasks",
-            JSON.stringify(
-                weekTasks
-            )
-        );
-    }
-
-
     function getDayDate(dayName) {
 
         const offsets = {
+
             monday: 0,
             tuesday: 1,
             wednesday: 2,
@@ -776,6 +1032,7 @@ if (dayCards.length > 0) {
 
 
         if (element) {
+
             element.textContent =
                 `${progress.percent}%`;
         }
@@ -866,29 +1123,25 @@ if (dayCards.length > 0) {
                                         "click",
                                         () => {
 
-                                            const wasCompleted =
+                                            const currentTask =
                                                 weekTasks[
                                                     day
                                                 ][
                                                     index
-                                                ].completed;
+                                                ];
 
 
-                                            weekTasks[
-                                                day
-                                            ][
-                                                index
-                                            ].completed =
+                                            const wasCompleted =
+                                                currentTask.completed;
+
+
+                                            currentTask.completed =
                                                 !wasCompleted;
 
 
                                             if (
                                                 !wasCompleted &&
-                                                weekTasks[
-                                                    day
-                                                ][
-                                                    index
-                                                ].completed
+                                                currentTask.completed
                                             ) {
 
                                                 const taskDate =
@@ -897,11 +1150,7 @@ if (dayCards.length > 0) {
                                                     );
 
 
-                                                weekTasks[
-                                                    day
-                                                ][
-                                                    index
-                                                ].completedAt =
+                                                currentTask.completedAt =
                                                     getDateKey(
                                                         taskDate
                                                     );
@@ -915,42 +1164,26 @@ if (dayCards.length > 0) {
 
                                             if (
                                                 wasCompleted &&
-                                                !weekTasks[
-                                                    day
-                                                ][
-                                                    index
-                                                ].completed
+                                                !currentTask.completed
                                             ) {
 
                                                 if (
-                                                    weekTasks[
-                                                        day
-                                                    ][
-                                                        index
-                                                    ].completedAt
+                                                    currentTask.completedAt
                                                 ) {
 
                                                     removeDailyActivity(
                                                         dateFromKey(
-                                                            weekTasks[
-                                                                day
-                                                            ][
-                                                                index
-                                                            ].completedAt
+                                                            currentTask.completedAt
                                                         )
                                                     );
                                                 }
 
 
-                                                delete weekTasks[
-                                                    day
-                                                ][
-                                                    index
-                                                ].completedAt;
+                                                delete currentTask.completedAt;
                                             }
 
 
-                                            saveWeekTasks();
+                                            saveSharedWeekTasks();
 
                                             showWeekTasks();
 
@@ -967,26 +1200,22 @@ if (dayCards.length > 0) {
                                         "click",
                                         () => {
 
+                                            const currentTask =
+                                                weekTasks[
+                                                    day
+                                                ][
+                                                    index
+                                                ];
+
+
                                             if (
-                                                weekTasks[
-                                                    day
-                                                ][
-                                                    index
-                                                ].completed &&
-                                                weekTasks[
-                                                    day
-                                                ][
-                                                    index
-                                                ].completedAt
+                                                currentTask.completed &&
+                                                currentTask.completedAt
                                             ) {
 
                                                 removeDailyActivity(
                                                     dateFromKey(
-                                                        weekTasks[
-                                                            day
-                                                        ][
-                                                            index
-                                                        ].completedAt
+                                                        currentTask.completedAt
                                                     )
                                                 );
                                             }
@@ -1000,7 +1229,7 @@ if (dayCards.length > 0) {
                                             );
 
 
-                                            saveWeekTasks();
+                                            saveSharedWeekTasks();
 
                                             showWeekTasks();
 
@@ -1075,7 +1304,7 @@ if (dayCards.length > 0) {
                         });
 
 
-                        saveWeekTasks();
+                        saveSharedWeekTasks();
 
                         showWeekTasks();
 
@@ -1111,11 +1340,7 @@ if (progressCanvas) {
 
 
     const currentTasks =
-        JSON.parse(
-            localStorage.getItem(
-                "weekTasks"
-            )
-        ) || createEmptyWeek();
+        sharedWeekTasks;
 
 
     const currentProgress =
@@ -1200,18 +1425,15 @@ if (progressCanvas) {
             "total-weeks"
         );
 
-
     const totalTasksElement =
         document.getElementById(
             "total-tasks"
         );
 
-
     const completedTasksElement =
         document.getElementById(
             "completed-tasks"
         );
-
 
     const averageElement =
         document.getElementById(
@@ -1220,24 +1442,28 @@ if (progressCanvas) {
 
 
     if (totalWeeksElement) {
+
         totalWeeksElement.textContent =
             allWeeks.length;
     }
 
 
     if (totalTasksElement) {
+
         totalTasksElement.textContent =
             totalTasks;
     }
 
 
     if (completedTasksElement) {
+
         completedTasksElement.textContent =
             completedTasks;
     }
 
 
     if (averageElement) {
+
         averageElement.textContent =
             `${average}%`;
     }
@@ -1271,7 +1497,6 @@ if (progressCanvas) {
             document.getElementById(
                 "best-week"
             );
-
 
         const bestScoreElement =
             document.getElementById(
@@ -1324,8 +1549,8 @@ if (progressCanvas) {
                 progressCanvas.parentElement
                     .clientWidth - 50;
 
-
-            const height = 300;
+            const height =
+                300;
 
 
             if (width <= 0) {
@@ -1340,7 +1565,8 @@ if (progressCanvas) {
                 height;
 
 
-            const padding = 40;
+            const padding =
+                40;
 
 
             ctx.clearRect(
@@ -1362,16 +1588,23 @@ if (progressCanvas) {
                     ? "#ddd"
                     : "#333";
 
-            ctx.lineWidth = 1;
+            ctx.lineWidth =
+                1;
 
 
-            for (let i = 0; i <= 4; i++) {
+            for (
+                let i = 0;
+                i <= 4;
+                i++
+            ) {
 
                 const y =
                     padding +
                     (
-                        (height - padding * 2) /
-                        4
+                        (
+                            height -
+                            padding * 2
+                        ) / 4
                     ) * i;
 
 
@@ -1390,7 +1623,8 @@ if (progressCanvas) {
                 ctx.stroke();
 
 
-                ctx.fillStyle = "#777";
+                ctx.fillStyle =
+                    "#777";
 
                 ctx.font =
                     "12px Inter";
@@ -1411,7 +1645,8 @@ if (progressCanvas) {
             ctx.strokeStyle =
                 "#e10600";
 
-            ctx.lineWidth = 3;
+            ctx.lineWidth =
+                3;
 
             ctx.beginPath();
 
@@ -1555,7 +1790,8 @@ if (historyList) {
         ) || [];
 
 
-    historyList.innerHTML = "";
+    historyList.innerHTML =
+        "";
 
 
     if (history.length === 0) {
@@ -1604,19 +1840,22 @@ if (historyList) {
 
 
                     const progress =
-                        week.percent !== undefined
+                        week.percent !==
+                        undefined
                             ? week.percent
                             : calculated.percent;
 
 
                     const total =
-                        week.total !== undefined
+                        week.total !==
+                        undefined
                             ? week.total
                             : calculated.total;
 
 
                     const completed =
-                        week.completed !== undefined
+                        week.completed !==
+                        undefined
                             ? week.completed
                             : calculated.completed;
 
@@ -1705,11 +1944,7 @@ if (
 
 
     const currentTasks =
-        JSON.parse(
-            localStorage.getItem(
-                "weekTasks"
-            )
-        ) || createEmptyWeek();
+        sharedWeekTasks;
 
 
     const weeks = [
@@ -1724,9 +1959,14 @@ if (
     ];
 
 
-    let currentStreak = 0;
-    let bestStreak = 0;
-    let streak = 0;
+    let currentStreak =
+        0;
+
+    let bestStreak =
+        0;
+
+    let streak =
+        0;
 
 
     weeks.forEach(
@@ -1757,7 +1997,8 @@ if (
 
             } else {
 
-                streak = 0;
+                streak =
+                    0;
             }
         }
     );
@@ -1791,7 +2032,6 @@ if (
 
     currentStreakElement.textContent =
         currentStreak;
-
 
     bestStreakElement.textContent =
         bestStreak;
@@ -1860,8 +2100,6 @@ if (activityCalendar) {
             : firstDay - 1;
 
 
-    // Empty cells before the first day
-
     for (
         let i = 0;
         i < mondayOffset;
@@ -1929,24 +2167,28 @@ if (activityCalendar) {
 
 
         if (count >= 1) {
+
             cell.classList.add(
                 "level-1"
             );
         }
 
         if (count >= 2) {
+
             cell.classList.add(
                 "level-2"
             );
         }
 
         if (count >= 3) {
+
             cell.classList.add(
                 "level-3"
             );
         }
 
         if (count >= 5) {
+
             cell.classList.add(
                 "level-4"
             );
@@ -1961,36 +2203,60 @@ if (activityCalendar) {
             cell
         );
     }
-}// Weekly goals
+}
+
+
+// Weekly goals
 
 const goalsList =
-    document.getElementById("goals-list");
+    document.getElementById(
+        "goals-list"
+    );
 
 const addGoalButton =
-    document.getElementById("add-goal");
+    document.getElementById(
+        "add-goal"
+    );
 
-if (goalsList && addGoalButton) {
+
+if (
+    goalsList &&
+    addGoalButton
+) {
 
     const currentWeekId =
-        getWeekId(new Date());
+        getWeekId(
+            new Date()
+        );
+
 
     let savedGoals =
         JSON.parse(
-            localStorage.getItem("weeklyGoals")
+            localStorage.getItem(
+                "weeklyGoals"
+            )
         ) || [];
 
+
     const savedGoalsWeek =
-        localStorage.getItem("weeklyGoalsWeek");
+        localStorage.getItem(
+            "weeklyGoalsWeek"
+        );
 
 
     if (
-        savedGoalsWeek !== currentWeekId
+        savedGoalsWeek !==
+        currentWeekId
     ) {
-        savedGoals = [];
+
+        savedGoals =
+            [];
 
         localStorage.setItem(
             "weeklyGoals",
-            JSON.stringify(savedGoals)
+            JSON.stringify(
+                savedGoals
+            )
         );
 
         localStorage.setItem(
@@ -2004,7 +2270,9 @@ if (goalsList && addGoalButton) {
 
         localStorage.setItem(
             "weeklyGoals",
-            JSON.stringify(savedGoals)
+            JSON.stringify(
+                savedGoals
+            )
         );
     }
 
@@ -2016,7 +2284,8 @@ if (goalsList && addGoalButton) {
 
         const completed =
             savedGoals.filter(
-                goal => goal.completed
+                goal =>
+                    goal.completed
             ).length;
 
 
@@ -2024,7 +2293,10 @@ if (goalsList && addGoalButton) {
             total === 0
                 ? 0
                 : Math.round(
-                    (completed / total) * 100
+                    (
+                        completed /
+                        total
+                    ) * 100
                 );
 
 
@@ -2040,12 +2312,14 @@ if (goalsList && addGoalButton) {
 
 
         if (progress) {
+
             progress.textContent =
                 `${percent}%`;
         }
 
 
         if (fill) {
+
             fill.style.width =
                 `${percent}%`;
         }
@@ -2054,7 +2328,8 @@ if (goalsList && addGoalButton) {
 
     function showGoals() {
 
-        goalsList.innerHTML = "";
+        goalsList.innerHTML =
+            "";
 
 
         savedGoals.forEach(
@@ -2071,6 +2346,7 @@ if (goalsList && addGoalButton) {
 
 
                 if (goal.completed) {
+
                     card.classList.add(
                         "completed"
                     );
@@ -2102,8 +2378,10 @@ if (goalsList && addGoalButton) {
                     "click",
                     () => {
 
-                        savedGoals[index].completed =
-                            !savedGoals[index].completed;
+                        savedGoals[index]
+                            .completed =
+                            !savedGoals[index]
+                                .completed;
 
                         saveGoals();
 
@@ -2157,9 +2435,16 @@ if (goalsList && addGoalButton) {
                 !name.trim()
             ) {
                 return;
-            }savedGoals.push({
-                name: name.trim(),
-                completed: false
+            }
+
+
+            savedGoals.push({
+
+                name:
+                    name.trim(),
+
+                completed:
+                    false
             });
 
 
@@ -2175,22 +2460,30 @@ if (goalsList && addGoalButton) {
     showGoals();
 
     updateGoalsProgress();
-}// Achievements
+}
+
+
+// Achievements
 
 const achievementsList =
-    document.getElementById("achievements-list");
+    document.getElementById(
+        "achievements-list"
+    );
+
 
 if (achievementsList) {
 
     const history =
         JSON.parse(
-            localStorage.getItem("weekHistory")
+            localStorage.getItem(
+                "weekHistory"
+            )
         ) || [];
 
+
     const currentTasks =
-        JSON.parse(
-            localStorage.getItem("weekTasks")
-        ) || createEmptyWeek();
+        sharedWeekTasks;
+
 
     const activity =
         getDailyActivity();
@@ -2199,61 +2492,92 @@ if (achievementsList) {
     const allWeeks = [
         ...history,
         {
-            tasks: currentTasks
+            tasks:
+                currentTasks
         }
     ];
 
 
-    let totalTasks = 0;
-    let completedTasks = 0;
+    let totalTasks =
+        0;
+
+    let completedTasks =
+        0;
 
 
-    allWeeks.forEach(week => {
+    allWeeks.forEach(
+        week => {
 
-        const progress =
-            calculateWeekProgress(
-                week.tasks || createEmptyWeek()
-            );
+            const progress =
+                calculateWeekProgress(
+                    week.tasks ||
+                    createEmptyWeek()
+                );
 
-        totalTasks += progress.total;
-        completedTasks += progress.completed;
-    });
+
+            totalTasks +=
+                progress.total;
+
+            completedTasks +=
+                progress.completed;
+        }
+    );
 
 
     const activeDays =
-        Object.keys(activity).filter(
-            date => activity[date] > 0
+        Object.keys(
+            activity
+        ).filter(
+            date =>
+                activity[date] > 0
         ).length;
 
 
-    let bestWeekScore = 0;
+    let bestWeekScore =
+        0;
 
 
-    allWeeks.forEach(week => {
+    allWeeks.forEach(
+        week => {
 
-        const progress =
-            calculateWeekProgress(
-                week.tasks || createEmptyWeek()
-            );
+            const progress =
+                calculateWeekProgress(
+                    week.tasks ||
+                    createEmptyWeek()
+                );
 
-        if (progress.percent > bestWeekScore) {
-            bestWeekScore = progress.percent;
+
+            if (
+                progress.percent >
+                bestWeekScore
+            ) {
+
+                bestWeekScore =
+                    progress.percent;
+            }
         }
-    });
+    );
 
 
     const achievements = [
 
         {
             icon: "🥇",
-            title: "FIRST STEP",
+
+            title:
+                "FIRST STEP",
+
             description:
                 "Complete your first task.",
 
             current:
-                Math.min(completedTasks, 1),
+                Math.min(
+                    completedTasks,
+                    1
+                ),
 
-            target: 1,
+            target:
+                1,
 
             unlocked:
                 completedTasks >= 1
@@ -2261,14 +2585,21 @@ if (achievementsList) {
 
         {
             icon: "🔥",
-            title: "7 DAYS",
+
+            title:
+                "7 DAYS",
+
             description:
                 "Be active on 7 different days.",
 
             current:
-                Math.min(activeDays, 7),
+                Math.min(
+                    activeDays,
+                    7
+                ),
 
-            target: 7,
+            target:
+                7,
 
             unlocked:
                 activeDays >= 7
@@ -2276,14 +2607,21 @@ if (achievementsList) {
 
         {
             icon: "🎯",
-            title: "90% WEEK",
+
+            title:
+                "90% WEEK",
+
             description:
                 "Reach 90% progress in a week.",
 
             current:
-                Math.min(bestWeekScore, 90),
+                Math.min(
+                    bestWeekScore,
+                    90
+                ),
 
-            target: 90,
+            target:
+                90,
 
             unlocked:
                 bestWeekScore >= 90
@@ -2291,14 +2629,21 @@ if (achievementsList) {
 
         {
             icon: "📅",
-            title: "4 WEEKS",
+
+            title:
+                "4 WEEKS",
+
             description:
                 "Track four weeks.",
 
             current:
-                Math.min(allWeeks.length, 4),
+                Math.min(
+                    allWeeks.length,
+                    4
+                ),
 
-            target: 4,
+            target:
+                4,
 
             unlocked:
                 allWeeks.length >= 4
@@ -2306,14 +2651,21 @@ if (achievementsList) {
 
         {
             icon: "👑",
-            title: "10 WEEKS",
+
+            title:
+                "10 WEEKS",
+
             description:
                 "Track ten weeks.",
 
             current:
-                Math.min(allWeeks.length, 10),
+                Math.min(
+                    allWeeks.length,
+                    10
+                ),
 
-            target: 10,
+            target:
+                10,
 
             unlocked:
                 allWeeks.length >= 10
@@ -2321,14 +2673,21 @@ if (achievementsList) {
 
         {
             icon: "💪",
-            title: "100 TASKS",
+
+            title:
+                "100 TASKS",
+
             description:
                 "Complete 100 tasks.",
 
             current:
-                Math.min(completedTasks, 100),
+                Math.min(
+                    completedTasks,
+                    100
+                ),
 
-            target: 100,
+            target:
+                100,
 
             unlocked:
                 completedTasks >= 100
@@ -2337,92 +2696,108 @@ if (achievementsList) {
     ];
 
 
-    achievementsList.innerHTML = "";
+    achievementsList.innerHTML =
+        "";
 
 
-    achievements.forEach(achievement => {
+    achievements.forEach(
+        achievement => {
 
-        const card =
-            document.createElement("div");
-
-
-        card.className =
-            achievement.unlocked
-                ? "achievement-card unlocked"
-                : "achievement-card locked";
+            const card =
+                document.createElement(
+                    "div"
+                );
 
 
-        const progress =
-            Math.round(
-                (
-                    achievement.current /
-                    achievement.target
-                ) * 100
-            );
-
-
-        card.innerHTML = `
-
-            <div class="achievement-icon">
-                ${achievement.icon}
-            </div>
-
-            <h3>
-                ${achievement.title}
-            </h3>
-
-            <p>
-                ${achievement.description}
-            </p>
-
-            ${
+            card.className =
                 achievement.unlocked
-                    ? `
-                        <span class="achievement-status">
-                            UNLOCKED ✓</span>
-                    `
-                    : `
-                        <div class="achievement-progress">
+                    ? "achievement-card unlocked"
+                    : "achievement-card locked";
 
-                            <div class="achievement-progress-text">
-                                <span>
-                                    ${achievement.current} / ${achievement.target}
-                                </span>
 
-                                <span>
-                                    ${progress}%
-                                </span>
+            const progress =
+                Math.round(
+                    (
+                        achievement.current /
+                        achievement.target
+                    ) * 100
+                );
+
+
+            card.innerHTML = `
+
+                <div class="achievement-icon">
+                    ${achievement.icon}
+                </div>
+
+                <h3>
+                    ${achievement.title}
+                </h3>
+
+                <p>
+                    ${achievement.description}
+                </p>
+
+                ${
+                    achievement.unlocked
+                        ? `
+                            <span class="achievement-status">
+                                UNLOCKED ✓
+                            </span>
+                        `
+                        : `
+                            <div class="achievement-progress">
+
+                                <div class="achievement-progress-text">
+                                    <span>
+                                        ${achievement.current} / ${achievement.target}
+                                    </span>
+
+                                    <span>
+                                        ${progress}%
+                                    </span>
+                                </div>
+
+                                <div class="achievement-progress-bar">
+
+                                    <div
+                                        class="achievement-progress-fill"
+                                        style="width: ${progress}%"
+                                    ></div>
+
+                                </div>
+
                             </div>
+                        `
+                }
 
-                            <div class="achievement-progress-bar">
-
-                                <div
-                                    class="achievement-progress-fill"
-                                    style="width: ${progress}%"
-                                ></div>
-
-                            </div>
-
-                        </div>
-                    `
-            }
-
-        `;
+            `;
 
 
-        achievementsList.appendChild(card);
-    });
+            achievementsList.appendChild(
+                card
+            );
+        }
+    );
 }
+
+
 // Daily notes
 
 const noteInput =
-    document.getElementById("daily-note");
+    document.getElementById(
+        "daily-note"
+    );
 
 const saveNoteButton =
-    document.getElementById("save-note");
+    document.getElementById(
+        "save-note"
+    );
 
 const noteStatus =
-    document.getElementById("note-status");
+    document.getElementById(
+        "note-status"
+    );
 
 
 if (
@@ -2431,12 +2806,16 @@ if (
 ) {
 
     const today =
-        getDateKey(new Date());
+        getDateKey(
+            new Date()
+        );
 
 
     const notes =
         JSON.parse(
-            localStorage.getItem("dailyNotes")
+            localStorage.getItem(
+                "dailyNotes"
+            )
         ) || {};
 
 
@@ -2446,6 +2825,7 @@ if (
             notes[today];
 
         if (noteStatus) {
+
             noteStatus.textContent =
                 "SAVED";
         }
@@ -2462,11 +2842,14 @@ if (
 
             localStorage.setItem(
                 "dailyNotes",
-                JSON.stringify(notes)
+                JSON.stringify(
+                    notes
+                )
             );
 
 
             if (noteStatus) {
+
                 noteStatus.textContent =
                     "SAVED";
             }
@@ -2479,27 +2862,41 @@ if (
         () => {
 
             if (noteStatus) {
+
                 noteStatus.textContent =
                     "NOT SAVED";
             }
         }
     );
-}// Calendar
+}
+
+
+// Calendar
 
 const calendarDays =
-    document.getElementById("calendar-days");
+    document.getElementById(
+        "calendar-days"
+    );
 
 const calendarMonth =
-    document.getElementById("calendar-month");
+    document.getElementById(
+        "calendar-month"
+    );
 
 const previousMonth =
-    document.getElementById("prev-month");
+    document.getElementById(
+        "prev-month"
+    );
 
 const nextMonth =
-    document.getElementById("next-month");
+    document.getElementById(
+        "next-month"
+    );
 
 const calendarInfo =
-    document.getElementById("calendar-info");
+    document.getElementById(
+        "calendar-info"
+    );
 
 
 if (calendarDays) {
@@ -2507,13 +2904,15 @@ if (calendarDays) {
     const activity =
         getDailyActivity();
 
+
     let calendarDate =
         new Date();
 
 
     function drawCalendar() {
 
-        calendarDays.innerHTML = "";
+        calendarDays.innerHTML =
+            "";
 
 
         const year =
@@ -2554,10 +2953,14 @@ if (calendarDays) {
         ) {
 
             const empty =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
+
 
             empty.className =
                 "calendar-day empty";
+
 
             calendarDays.appendChild(
                 empty
@@ -2574,7 +2977,9 @@ if (calendarDays) {
 
 
         const todayKey =
-            getDateKey(new Date());
+            getDateKey(
+                new Date()
+            );
 
 
         for (
@@ -2594,12 +2999,15 @@ if (calendarDays) {
             const key =
                 getDateKey(date);
 
+
             const count =
                 activity[key] || 0;
 
 
             const dayElement =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
 
 
             dayElement.className =
